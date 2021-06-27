@@ -190,7 +190,7 @@ Returns current position as a marker."
       (setq-local eldoc-idle-delay xhair-eldoc-idle-delay))
     (add-hook 'post-command-hook #'xhair--report-point 100 'local)
     (if only-until-next-event
-      (add-hook 'pre-command-hook #'xhair-unhighlight 'local)
+      (add-hook 'pre-command-hook #'xhair-unhighlight nil 'local)
      (when seconds
        (cancel-timer xhair--flash-timer) ; Cancel to prevent duplication.
        (setq xhair--flash-timer
