@@ -74,7 +74,7 @@
   * Simplifies code-base
   * Applies a single unique face, by default
   * Suspends `yascroll-bar-mode`, to not interfere with `vline-mode`
-  * Reports POINT for all navgitaion for duration of mode
+  * Reports POINT for all navigation for duration of mode
   * Delays `eldoc-mode` messages, to not interfere with reporting POINT
   * Suppresses output to *Messages* buffer
   * Changes documentation
@@ -85,7 +85,7 @@
 * Copyright (C) 2021 Boruch Baum <boruch-baum@gmx.com>
 * Author/Maintainer:  Boruch Baum <boruch-baum@gmx.com>
 * Homepage: https://github.com/Boruch-Baum/emacs-xhair
-* License: GPL3+
+* SPDX-License-Identifier: GPL-3.0-or-later
 
 ## Some other Emacs software that I've published
 
@@ -109,12 +109,17 @@
 * Key-assist
   [![MELPA](https://melpa.org/packages/key-assist-badge.svg)](https://melpa.org/#/key-assist)
   [![MELPA Stable](https://stable.melpa.org/packages/key-assist-badge.svg)](https://stable.melpa.org/#/key-assist)
-  * Simple keybinding cheatsheet and launcher
+  * Simple keybinding cheat-sheet and launcher
   * https://github.com/Boruch-Baum/emacs-key-assist
 
 * Cursor-flash
   * Highlight the cursor on buffer/window-switch
   * https://github.com/Boruch-Baum/emacs-cursor-flash
+
+* Pkg-Overview
+  [![MELPA](https://melpa.org/packages/pkg-overview-badge.svg)](https://melpa.org/#/pkg-overview)
+  * Make org documentation from an elisp source file
+  * https://github.com/Boruch-Baum/emacs-pkg-overview
 
 * Home-end
   [![MELPA](https://melpa.org/packages/home-end-badge.svg)](https://melpa.org/#/home-end)

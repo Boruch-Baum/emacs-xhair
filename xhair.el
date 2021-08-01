@@ -1,16 +1,35 @@
 ;;; xhair.el --- Highlight the current line and column
 
-;; License: GPL3+
+;; Copyright © 2020-2021, Boruch Baum <boruch_baum@gmx.com>
+
+;; Author/Maintainer: Boruch Baum <boruch_baum@gmx.com>
+;; Homepage: https://github.com/Boruch-Baum/emacs-xhair
+;; SPDX-License-Identifier: GPL-3.0-or-later
 ;; Keywords: convenience faces maint
 ;; Package: xhair
 ;; Version: 1.0
 ;; Package-Requires: ((emacs "24.3") (vline "1.0"))
-;;
+
 ;;   (emacs "24.3") ; for: defvar-local, setq-local
 
-;;
+;; This file is NOT part of GNU Emacs.
+
+;; This is free software: you can redistribute it and/or modify it under
+;; the terms of the GNU General Public License as published by the Free
+;; Software Foundation, either version 3 of the License, or (at your
+;; option) any later version.
+
+;; This software is distributed in the hope that it will be useful, but
+;; WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+;; Public License for more details.
+
+;; You should have received a copy of the GNU General Public License along
+;; with this software. If not, see <https://www.gnu.org/licenses/>.
+
+
 ;;; Commentary:
-;;
+
 ;;   This package simultaneously applies `vline-mode' and
 ;;   `hl-line-mode', with tweaks, to present POINT in highlighted
 ;;   cross-hairs, reporting the value of POINT as a message in the
@@ -20,49 +39,49 @@
 ;;   `xhair-flash' by default).
 
 ;;; Usage:
-;;
+
 ;;   After installing the package, run any of the following:
-;;
+
 ;;     M-x `xhair-mode'  - Apply until manually toggled
-;;
+
 ;;     M-x `xhair'       - Apply until next keypress
-;;
+
 ;;     M-x `xhair-flash' - Apply for a set interval
-;;
+
 ;;   Refer to the function docstrings for further details.
 
 ;;; Customization:
-;;
+
 ;;   See variables `xhair-eldoc-idle-delay', `xhair-flash-interval',
 ;;   and `xhair-face'.
 
 ;;; Compatibility:
-;;
+
 ;;   * Tested on Debian Emacs 27 nox.
-;;
+
 ;;   * Includes support to operate nicely with `yascroll-bar-mode'. It
 ;;     temporarily suspends that mode locally in order not to make the
 ;;     buffer display jump around.
-;;
+
 ;;   * Includes support to operate nicely with `eldoc-mode'. It delays
 ;;     eldoc messages to give the user time to read the value of POINT from
 ;;     the echo area.
 
 ;;; Feedback:
-;;
+
 ;;   * It's best to contact me by opening an 'issue' on the package's
 ;;     github repository (see above) or, distant second-best, by
 ;;     direct e-mail.
-;;
+
 ;;   * Code contributions are welcome and github starring is
 ;;     appreciated.
 
 ;; Antecedent:
-;;
+
 ;;  This package is based upon `crosshairs.el' by Drew Adams, available at:
-;;
+
 ;;    https://www.emacswiki.org/emacs/download/crosshairs.el
-;;
+
 ;;  Its main differences from Drew's package is that it:
 ;;  * Is MELPA-friendly
 ;;  * Reduces dependencies
@@ -77,16 +96,20 @@
 ;;  * Eschews all use of macro `define-minor-mode'
 
 
-;;
+
 ;;; Code:
-;; FIXME: Remove this next line!
-(add-to-list 'load-path "~/.emacs.d/elpa/vline-20120108.445/")
 
 (require 'hl-line) ; Part of Emacs
 (require 'vline)   ; Available via MELPA
 
+
+;;; External functions
+(declare-function yascroll-bar-mode         "ext:yascroll.el")
+(declare-function yascroll:show-scroll-bar  "ext:yascroll.el")
+(declare-function vline-mode                "ext:vline.el")
+
 
-;;
+
 ;;; Customizations:
 
 (defcustom xhair-face
@@ -110,7 +133,7 @@ variable `eldoc-idle-delay'."
   :group 'xhair)
 
 
-;;
+
 ;;; Buffer-local variables:
 
 (defvar-local xhair-mode nil
@@ -128,7 +151,7 @@ Never set this variable directly! Always use function
   "Holding state for minor mode `yascroll-bar-mode'.")
 
 
-;;
+
 ;;; Hook functions:
 
 (defun xhair--report-point ()
@@ -141,7 +164,7 @@ Hook function for `post-command-hook'."
 ;;       hook function for `pre-command-hook'.
 
 
-;;
+
 ;;; Interactive functions:
 
 (defun xhair-highlight (&optional mode nomsg only-until-next-event seconds)
@@ -306,7 +329,7 @@ until you manually toggle it off."
   (xhair-mode (if xhair-mode -1 1) (not arg)))
 
 
-;;
+
 ;;; Conclusion:
 
 (provide 'xhair)
